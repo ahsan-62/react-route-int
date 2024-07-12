@@ -1,24 +1,27 @@
-import { Link, Outlet } from "react-router-dom";
+import { Link, NavLink, Outlet, useNavigation } from "react-router-dom";
 
 import './Navbar.css'
 
 
 const Navbar = () => {
+    const navigation=useNavigation();
+    
     return (
         <div>
-            <div className="navbar-container">
+            <nav className="navbar-container">
                 <ul className="navbar-ul">
-                   <Link to="/">Home</Link>
-                   <Link to="/about">About</Link>
-                   <Link to="/users">Users</Link>
-                   <Link to="/posts">Posts</Link>
-                   <Link to="/contact">Contact Us</Link>
-                   <Link to="/help">Help</Link>
+                   <NavLink to="/">Home</NavLink>
+                   <NavLink to="/about">About</NavLink>
+                   <NavLink to="/users">Users</NavLink>
+                   <NavLink to="/posts">Posts</NavLink>
+                   <NavLink to="/contact">Contact Us</NavLink>
+                   <NavLink to="/help">Help</NavLink>
                 </ul>
                 {/* <Outlet/>   use to breakdown the skin of the page */}
-            </div>
+            </nav>
             <div className="navbar-outlet">
-            <Outlet/>
+            {navigation.state==='loading'? <div>Loading...</div>:<Outlet/>}
+            
             </div>
         </div>
     );
